@@ -74,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 
-// Check for password
     if(empty(trim($_POST['password']))){
         $password_err = "Password cannot be blank";
     }
@@ -91,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 
 
-// If there were no errors, go ahead and insert into the database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err))
     {
         $sql = "INSERT INTO users (username, password,email) VALUES (?, ?, ?)";
@@ -100,11 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         {
             mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password,$param_email);
 
-            // Set these parameters
+
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT);
             $param_email=$email;
-            // Try to execute the query
+
             if (mysqli_stmt_execute($stmt))
             {
                 header("location: login.php");
@@ -126,11 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Login page</title>
