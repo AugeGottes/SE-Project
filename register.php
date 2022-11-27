@@ -17,10 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-            // Set the value of param username
+
             $param_username = trim($_POST['username']);
 
-            // Try to execute this statement
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1)
@@ -32,14 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 }
             }
             else{
-                echo "Something went wrong";
+                echo "Hello world";
             }
         }
     }
 
     mysqli_stmt_close($stmt);
 
-    //select email
+
     if(empty(trim($_POST["email"]))){
         $email_err = "Email cannot be blank";
     }
@@ -50,10 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         {
             mysqli_stmt_bind_param($stmt, "s", $param_email);
 
-            // Set the value of param username
+
             $param_email = trim($_POST['email']);
 
-            // Try to execute this statement
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1)
@@ -65,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 }
             }
             else{
-                echo "Something went wrong";
+                echo "Hello lol";
             }
         }
     }
@@ -84,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $password = trim($_POST['password']);
     }
 
-// Check for confirm password field
+
     if(trim($_POST['password']) !=  trim($_POST['confirm_password'])){
         $password_err = "Passwords does not  match";
     }
@@ -108,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 header("location: login.php");
             }
             else{
-                echo "Something went wrong";
+                echo "Hello wrong";
             }
         }
         mysqli_stmt_close($stmt);
